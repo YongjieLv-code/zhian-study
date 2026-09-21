@@ -1,0 +1,57 @@
+services:
+  app:
+    build:
+      context: ..
+    restart: unless-stopped
+    environment:
+      ZHIAN_DATABASE_URL: sqlite:////app/data/zhian.db
+      ZHIAN_BACKUP_DIR: /app/data/backups
+      ZHIAN_AUTH_REQUIRED: "true"
+      ZHIAN_SECURE_COOKIE: "true"
+      ZHIAN_ALLOWED_HOSTS: ${ZHIAN_DOMAIN:?Set ZHIAN_DOMAIN},127.0.0.1
+      ZHIAN_ALLOWED_ORIGINS: https://${ZHIAN_DOMAIN:?Set ZHIAN_DOMAIN}
+      ZHIAN_BOOTSTRAP_TOKEN: ${ZHIAN_BOOTSTRAP_TOKEN:?Set a random bootstrap token}
+      ZHIAN_ALLOW_REGISTRATION: ${ZHIAN_ALLOW_REGISTRATION:-false}
+      ZHIAN_TIMEZONE: ${ZHIAN_TIMEZONE:-Asia/Shanghai}
+      ZHIAN_WECHAT_APPID: ${ZHIAN_WECHAT_APPID:-}
+      ZHIAN_WECHAT_SECRET: ${ZHIAN_WECHAT_SECRET:-}
+    command: ["python", "-m", "uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", "8765", "--proxy-headers", "--forwarded-allow-ips", "*"]
+    volumes:
+      - study-data:/app/data
+    networks:
+      - backend
+      - outbound
+    # The app has no host port; only Caddy can reach it through the private network.
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      ZHIAN_DOMAIN: ${ZHIAN_DOMAIN:?Set ZHIAN_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - backend
+      - edge
+    depends_on:
+      app:
+        condition: service_healthy
+
+networks:
+  backend:
+    internal: true
+  edge:
+  # Outbound HTTPS is needed for the server-side WeChat code exchange.
+  # No app port is published on the host.
+  outbound:
+
+volumes:
+  study-data:
+  caddy-data:
+  caddy-config:

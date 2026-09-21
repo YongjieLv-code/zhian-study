@@ -1,0 +1,110 @@
+{
+  "pages": [
+    {
+      "path": "pages/today/index",
+      "style": {
+        "navigationBarTitleText": "知岸",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/plans/index",
+      "style": {
+        "navigationBarTitleText": "学习计划",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/reviews/index",
+      "style": {
+        "navigationBarTitleText": "温故知新",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/stats/index",
+      "style": {
+        "navigationBarTitleText": "学习复盘",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的知岸",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": { "navigationBarTitleText": "欢迎来到知岸" }
+    },
+    {
+      "path": "pages/editor/index",
+      "style": { "navigationBarTitleText": "记录学习" }
+    },
+    {
+      "path": "pages/focus/index",
+      "style": { "navigationBarTitleText": "专注此刻" }
+    },
+    {
+      "path": "pages/records/index",
+      "style": {
+        "navigationBarTitleText": "学习记录",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/review-session/index",
+      "style": { "navigationBarTitleText": "回忆与复习" }
+    },
+    {
+      "path": "pages/account/index",
+      "style": { "navigationBarTitleText": "账号安全" }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f6f7f2",
+    "backgroundColor": "#f6f7f2",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#879180",
+    "selectedColor": "#45634c",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/today/index",
+        "text": "今日",
+        "iconPath": "static/tabs/today.png",
+        "selectedIconPath": "static/tabs/today-active.png"
+      },
+      {
+        "pagePath": "pages/plans/index",
+        "text": "计划",
+        "iconPath": "static/tabs/plans.png",
+        "selectedIconPath": "static/tabs/plans-active.png"
+      },
+      {
+        "pagePath": "pages/reviews/index",
+        "text": "复习",
+        "iconPath": "static/tabs/reviews.png",
+        "selectedIconPath": "static/tabs/reviews-active.png"
+      },
+      {
+        "pagePath": "pages/stats/index",
+        "text": "统计",
+        "iconPath": "static/tabs/stats.png",
+        "selectedIconPath": "static/tabs/stats-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "static/tabs/mine.png",
+        "selectedIconPath": "static/tabs/mine-active.png"
+      }
+    ]
+  }
+}

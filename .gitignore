@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+.env
+.env.local
+.env.*.local
+project.private.config.json
+*.log
+.test-results/

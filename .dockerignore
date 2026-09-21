@@ -1,0 +1,11 @@
+.git
+.env
+deploy/.env
+.venv
+node_modules
+dist
+data
+.test-results
+.pytest_cache
+**/__pycache__
+*.log
